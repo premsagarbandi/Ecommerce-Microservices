@@ -1,9 +1,0 @@
-package com.flm.delivery.service.impl;
-
-import com.flm.delivery.service.DeliveryService;
-
-public class DeliveryServiceImpl implements DeliveryService{
-
-	
-	
-}
