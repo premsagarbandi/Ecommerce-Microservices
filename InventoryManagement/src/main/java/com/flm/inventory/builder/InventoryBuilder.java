@@ -1,0 +1,47 @@
+package com.flm.inventory.builder;
+
+import java.time.LocalDateTime;
+
+import com.flm.inventory.dto.request.InventoryCreateRequest;
+import com.flm.inventory.dto.request.InventoryUpdateRequest;
+import com.flm.inventory.dto.response.InventoryResponse;
+import com.flm.inventory.model.Inventory;
+
+public class InventoryBuilder {
+
+	public static Inventory buildInventoryFromInventoryCreateRequest(InventoryCreateRequest inventoryCreateRequest) {
+		
+		return 	Inventory.builder()
+							.productId(inventoryCreateRequest.getProductId())
+							.availableQuantity(inventoryCreateRequest.getAvailableQuantity())
+							.reserveQuantity(inventoryCreateRequest.getReserveQuantity())
+							.warehouse(inventoryCreateRequest.getWarehouse())
+							.createdAt(LocalDateTime.now())
+							.createdBy(inventoryCreateRequest.getCreatedBy())
+							.build();
+
+	}
+	
+	public static Inventory buildInventoryFromInventoryUpdateRequest(Inventory existingInventory, InventoryUpdateRequest inventoryUpdateRequest) {
+		
+		return Inventory.builder()
+							.inventoryId(existingInventory.getInventoryId())
+							.productId(existingInventory.getProductId())
+							.availableQuantity(inventoryUpdateRequest.getAvailableQuantity())
+							.reserveQuantity(inventoryUpdateRequest.getReserveQuantity())
+							.warehouse(inventoryUpdateRequest.getWarehouse())
+							.build();
+	}
+	
+	public static InventoryResponse buildInventoryResponseFromInventory(Inventory inventory) {
+		
+		return InventoryResponse.builder()
+							.inventoryId(inventory.getInventoryId())
+							.productId(inventory.getProductId())
+							.availableQuantity(inventory.getAvailableQuantity())
+							.reserveQuantity(inventory.getReserveQuantity())
+							.warehouse(inventory.getWarehouse())
+							.build();
+		
+	}
+}

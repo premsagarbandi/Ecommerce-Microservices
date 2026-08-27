@@ -1,0 +1,19 @@
+package com.flm.inventory.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.flm.inventory.dto.request.InventoryCreateRequest;
+import com.flm.inventory.dto.request.InventoryUpdateRequest;
+import com.flm.inventory.dto.response.InventoryResponse;
+
+@Service
+public interface InventoryService {
+
+	public InventoryResponse save(InventoryCreateRequest inventoryCreateRequest);
+	public List<InventoryResponse> getAllInventories();
+	public InventoryResponse getInventoryById(long inventoryId);
+	public InventoryResponse update(long inventoryId, InventoryUpdateRequest inventoryUpdateRequest);
+	public void delete(long inventoryId);
+}

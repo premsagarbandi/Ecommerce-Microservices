@@ -1,0 +1,5 @@
+package com.flm.delivery.service;
+
+public interface DeliveryService {
+
+}

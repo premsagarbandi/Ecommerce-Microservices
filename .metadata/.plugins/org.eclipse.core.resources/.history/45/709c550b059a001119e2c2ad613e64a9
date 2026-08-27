@@ -1,0 +1,13 @@
+package com.flm.inventory.builder;
+
+import com.flm.inventory.dto.request.InventoryCreateRequest;
+import com.flm.users.model.Inventory;
+
+public class InventoryBuilder {
+
+	public static Inventory buildInventoryFromInventoryCreateRequest(InventoryCreateRequest inventoryCreateRequest) {
+		
+		
+		
+	}
+}

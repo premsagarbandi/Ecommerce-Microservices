@@ -1,0 +1,12 @@
+spring.application.name=ProductManagement
+
+
+server.port=808
+
+spring.datasource.username=root
+spring.datasource.url=jdbc:mysql://localhost:3306/microservices
+spring.datasource.password=premsagar
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

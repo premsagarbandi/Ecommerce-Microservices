@@ -1,0 +1,5 @@
+package com.flm.delivery.dao;
+
+public interface DeliveryRepository {
+
+}

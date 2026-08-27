@@ -1,0 +1,49 @@
+package com.flm.users.builder;
+
+import com.flm.users.dto.request.AddressCreateRequest;
+import com.flm.users.dto.request.AddressUpdateRequest;
+import com.flm.users.dto.response.AddressResponse;
+import com.flm.users.model.Address;
+
+public class AddressBuilder {
+
+	public static Address buildAddressFromAddressCreateRequest(AddressCreateRequest addressCreateRequest) {
+		
+		return Address
+					.builder()
+ 					.state(addressCreateRequest.getState())
+					.street(addressCreateRequest.getStreet())
+					.country(addressCreateRequest.getCountry())
+					.pincode(addressCreateRequest.getPincode())
+					.city(addressCreateRequest.getCity())
+					.build();
+		
+	}
+	
+	public static AddressResponse buildAddressResponseFromAddress(Address address) {
+		
+		return AddressResponse
+					.builder()
+					.addressId(address.getAddressId())
+					.street(address.getStreet())
+					.state(address.getState())
+					.city(address.getCity())
+					.country(address.getCountry())
+					.pincode(address.getPincode())
+					.build();
+		
+	}
+	
+	public static Address buildAddressFromAddressUpdateRequest(Address existingAddress, AddressUpdateRequest addressUpdateRequest) {
+		
+		return Address.builder()
+						.addressId(existingAddress.getAddressId())
+						.street(addressUpdateRequest.getStreet())
+						.state(addressUpdateRequest.getState())
+						.city(addressUpdateRequest.getCity())
+						.country(addressUpdateRequest.getCountry())
+						.pincode(existingAddress.getPincode())
+						.build();
+		
+	}
+}

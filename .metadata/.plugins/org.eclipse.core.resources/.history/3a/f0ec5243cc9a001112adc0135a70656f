@@ -1,0 +1,22 @@
+package com.flm.delivery.builder;
+
+import com.flm.delivery.dto.response.DeliveryResponse;
+import com.flm.delivery.model.Delivery;
+
+public class DeliveryBuilder {
+
+	public static DeliveryResponse buildDeliveryResponseFromDelivery(Delivery delivery) {
+		
+		return DeliveryResponse.builder()
+						.deliveryId(delivery.getDeliveryId())
+						.orderId(delivery.getOrderId())
+						.trackingNumber(delivery.getTrackingNumber())
+						.shipingAddress(delivery.getShippingAddress())
+						.estimatedDeliveryDate(delivery.getEstimatedDeliveryDate())
+						.actualDeliveryDate(delivery.getActualDeliveryDate())
+						.status(delivery.getStatus())
+						.build();
+		
+	}
+	
+}

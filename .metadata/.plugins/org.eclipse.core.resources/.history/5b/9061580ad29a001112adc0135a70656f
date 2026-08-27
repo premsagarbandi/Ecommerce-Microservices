@@ -1,0 +1,19 @@
+package com.flm.delivery.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.flm.delivery.dto.request.DeliveryCreateRequest;
+import com.flm.delivery.dto.request.DeliveryUpdateRequest;
+import com.flm.delivery.dto.response.DeliveryResponse;
+import com.flm.delivery.model.Delivery;
+
+@Service
+public interface DeliveryService {
+
+	public DeliveryResponse saveDelivery(DeliveryCreateRequest deliveryCreateRequest);
+	public List<DeliveryResponse> getAllDeliveries();
+	public DeliveryResponse findbyId(long deliveryId);
+	public DeliveryResponse updateDelivery(Delivery exisitingDelivery, DeliveryUpdateRequest);
+}

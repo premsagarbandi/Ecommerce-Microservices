@@ -1,0 +1,24 @@
+package com.flm.inventory.builder;
+
+import java.time.LocalDateTime;
+
+import com.flm.inventory.dto.request.InventoryCreateRequest;
+import com.flm.users.model.Inventory;
+
+public class InventoryBuilder {
+
+	public static Inventory buildInventoryFromInventoryCreateRequest(InventoryCreateRequest inventoryCreateRequest) {
+		
+		Inventory.builder()
+		.productId(inventoryCreateRequest.getProductId())
+		.availableQuantity(inventoryCreateRequest.getAvailableQuantity())
+		.reserveQuantity(inventoryCreateRequest.getReserveQuantity())
+		.warehouse(inventoryCreateRequest.getWarehouse())
+		.createdAt(LocalDateTime.now())
+		.createdBy(inventoryCreateRequest.getCreatedBy())
+		.build();
+
+
+		
+	}
+}
