@@ -1,0 +1,13 @@
+# Eclipse workspace files
+.metadata/
+RemoteSystemsTempFiles/
+
+# Maven build folders
+**/target/
+
+# Log files
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
