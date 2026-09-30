@@ -17,6 +17,8 @@ public class DeliveryResponse {
 	
 	private long orderId;
 	
+	private double orderPrice;
+	
 	private String trackingNumber;
 	
 	private String shipingAddress;

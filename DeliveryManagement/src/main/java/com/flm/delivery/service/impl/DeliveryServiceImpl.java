@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.flm.delivery.builder.DeliveryBuilder;
+import com.flm.delivery.client.OrderClient;
 import com.flm.delivery.dao.DeliveryRepository;
 import com.flm.delivery.dto.request.DeliveryCreateRequest;
 import com.flm.delivery.dto.request.DeliveryUpdateRequest;
 import com.flm.delivery.dto.response.DeliveryResponse;
+import com.flm.delivery.dto.response.OrderResponse;
 import com.flm.delivery.model.Delivery;
 import com.flm.delivery.service.DeliveryService;
 
@@ -18,6 +20,9 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	@Autowired
 	DeliveryRepository deliveryRepository;
+	
+	@Autowired
+	OrderClient orderClient;
 	
 	@Override
 	public DeliveryResponse assignDelivery(DeliveryCreateRequest deliveryCreateRequest) {
@@ -45,7 +50,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 		Delivery delivery = deliveryRepository.findById(deliveryId)
 							.orElseThrow(()-> new RuntimeException("Delivery not found with ID: " + deliveryId));
 		
-		return DeliveryBuilder.buildDeliveryResponseFromDelivery(delivery);
+		DeliveryResponse deliveryResponseFromDTO = DeliveryBuilder.buildDeliveryResponseFromDelivery(delivery);
+		
+		OrderResponse orderResponse = orderClient.getOrderById(deliveryResponseFromDTO.getOrderId());
+		deliveryResponseFromDTO.setOrderPrice(orderResponse.getTotalPrice());
+		
+		return deliveryResponseFromDTO;
 	}
 
 	@Override

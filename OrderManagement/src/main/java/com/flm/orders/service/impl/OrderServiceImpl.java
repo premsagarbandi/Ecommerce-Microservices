@@ -87,7 +87,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		
 		@Nullable
-		UserResponse userResponse = restTemplate.getForObject("http://localhost:8081/users/" + orderResponseFromOrder.getUserId(), UserResponse.class);
+		UserResponse userResponse = restTemplate.getForObject("http://UserManagement/users/" + orderResponseFromOrder.getUserId(), UserResponse.class);
 		
 		orderResponseFromOrder.setName(userResponse.getUserName());
 		
