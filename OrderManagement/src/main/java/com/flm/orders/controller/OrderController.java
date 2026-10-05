@@ -58,4 +58,9 @@ public class OrderController {
 		orderService.delete(orderId);
 		
 	}
+	
+	@GetMapping("/users/{id}")
+	public String getUserName(@PathVariable(name = "id") int userId) {
+		return orderService.getUserName(userId);
+	}
 }

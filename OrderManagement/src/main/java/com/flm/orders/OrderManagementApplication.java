@@ -14,7 +14,6 @@ public class OrderManagementApplication {
 	}
 
 	@Bean
-	@LoadBalanced
 	public RestTemplate restTemplate(){
 		
 		return new RestTemplate();

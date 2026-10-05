@@ -24,6 +24,8 @@ import com.flm.orders.model.Order;
 import com.flm.orders.model.OrderItem;
 import com.flm.orders.service.OrderService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -87,13 +89,26 @@ public class OrderServiceImpl implements OrderService {
 		
 		
 		@Nullable
-		UserResponse userResponse = restTemplate.getForObject("http://UserManagement/users/" + orderResponseFromOrder.getUserId(), UserResponse.class);
+		UserResponse userResponse = restTemplate.getForObject("http://localhost:8086/users/" + orderResponseFromOrder.getUserId(), UserResponse.class);
 		
 		orderResponseFromOrder.setName(userResponse.getUserName());
 		
 		return orderResponseFromOrder;
 	}
-
+	
+	@CircuitBreaker(name = "orderCB", fallbackMethod = "userNotResponding")
+	public String getUserName(int userId) {
+		
+		UserResponse userResponse = restTemplate.getForObject("http://localhost:8086/users/" + userId, UserResponse.class);
+		
+		return userResponse.getUserName(); 
+	}
+	
+	public String userNotResponding(int userId, Throwable throwable) {
+		
+		return "User Service is down now! Please come back later";
+	}
+	
 	@Override
 	public OrderResponse update(long orderId, OrderUpdateRequest orderUpdateRequest) {
 
